@@ -1,5 +1,3 @@
-#Version 1 de la página web. 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,7 +146,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(1.5rem, 5vw, 3em);
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
             -webkit-background-clip: text;
@@ -202,9 +200,13 @@
             color: var(--accent);
         }
 
-        /* Projects Section */
-        .projects {
+        /* CV Section */
+        .cv {
             padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .cv-container {
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -219,6 +221,174 @@
             text-align: center;
             color: var(--text-secondary);
             margin-bottom: 4rem;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .cv-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cv-card:hover::before {
+            opacity: 1;
+        }
+
+        .cv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cv-icon {
+            font-size: 1.2rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cv-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .cv-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cv-item-company {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .cv-item-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .language-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .language-level {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .download-cv {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-download {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .projects-grid {
@@ -323,7 +493,7 @@
         /* About Section */
         .about {
             padding: 5rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
         }
 
         .about-content {
@@ -346,7 +516,7 @@
             margin-top: 2rem;
         }
 
-        .skill-item {
+        .about .skill-item {
             padding: 1rem;
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -354,7 +524,7 @@
             transition: all 0.3s ease;
         }
 
-        .skill-item:hover {
+        .about .skill-item:hover {
             border-color: var(--accent);
             transform: translateY(-2px);
         }
@@ -364,6 +534,7 @@
             padding: 3rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
         }
 
         .social-links {
@@ -394,8 +565,12 @@
                 font-size: 3rem;
             }
             
-            .projects-grid {
+            .projects-grid, .cv-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .skills-grid, .languages-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             }
         }
     </style>
@@ -409,6 +584,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#cv">CV</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -417,11 +593,11 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Electronics Designer</h1>
-            <p class="subtitle">Crafting PCBs with Altium Designer</p>
+            <h1>Electronics & Robotic Engineer</h1>
+            <p class="subtitle">Project Portfolio </p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="https://github.com/yourusername" class="btn btn-secondary">GitHub</a>
+                <a href="https://github.com/LeoBarmez" class="btn btn-secondary">GitHub</a>
             </div>
         </div>
     </section>
@@ -490,6 +666,142 @@
         </div>
     </section>
 
+    <section id="cv" class="cv">
+        <div class="cv-container">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            <p class="section-subtitle">Professional experience and qualifications</p>
+            
+            <div class="cv-grid">
+                <!-- Experience Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">💼</span>
+                        Professional Experience
+                    </h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Senior Electronics Designer</div>
+                        <div class="cv-item-company">Tech Solutions Inc.</div>
+                        <div class="cv-item-date">January 2022 - Present</div>
+                        <div class="cv-item-description">
+                            Leading PCB design projects using Altium Designer for IoT devices and embedded systems. Responsible for signal integrity analysis, EMC compliance, and design optimization.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Electronics Engineer</div>
+                        <div class="cv-item-company">Innovation Labs</div>
+                        <div class="cv-item-date">March 2020 - December 2021</div>
+                        <div class="cv-item-description">
+                            Developed electronic prototypes and performed signal analysis. Collaborated on industrial automation projects and power management systems.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Junior PCB Designer</div>
+                        <div class="cv-item-company">ElectroDesign Co.</div>
+                        <div class="cv-item-date">June 2018 - February 2020</div>
+                        <div class="cv-item-description">
+                            Designed 2-4 layer PCBs for consumer electronics. Gained extensive experience with Altium Designer and PCB design best practices.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">🎓</span>
+                        Education
+                    </h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">B.S. Electronics Engineering</div>
+                        <div class="cv-item-company">Tech University</div>
+                        <div class="cv-item-date">2014 - 2018</div>
+                        <div class="cv-item-description">
+                            Specialized in digital and analog circuit design. Thesis project focused on wireless communication systems and RF design principles.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Altium Designer Certification</div>
+                        <div class="cv-item-company">Altium Academy</div>
+                        <div class="cv-item-date">2019</div>
+                        <div class="cv-item-description">
+                            Official certification in advanced PCB design and routing best practices using Altium Designer.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">IPC-2221 Certification</div>
+                        <div class="cv-item-company">IPC International</div>
+                        <div class="cv-item-date">2020</div>
+                        <div class="cv-item-description">
+                            Certified in PCB design standards and manufacturing guidelines for professional electronics development.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">⚡</span>
+                        Technical Skills
+                    </h3>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-item">Altium Designer</div>
+                        <div class="skill-item">KiCad</div>
+                        <div class="skill-item">PCB Layout</div>
+                        <div class="skill-item">Signal Integrity</div>
+                        <div class="skill-item">EMC/EMI Design</div>
+                        <div class="skill-item">FPGA Integration</div>
+                        <div class="skill-item">RF Circuit Design</div>
+                        <div class="skill-item">Power Electronics</div>
+                        <div class="skill-item">SPICE Simulation</div>
+                        <div class="skill-item">3D Modeling</div>
+                        <div class="skill-item">Git Version Control</div>
+                        <div class="skill-item">Python Scripting</div>
+                    </div>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">🌐</span>
+                        Languages
+                    </h3>
+                    
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <div class="language-name">English</div>
+                            <div class="language-level">Native</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">Spanish</div>
+                            <div class="language-level">Advanced</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">French</div>
+                            <div class="language-level">Intermediate</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">German</div>
+                            <div class="language-level">Basic</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-cv">
+                <a href="#" class="btn-download">
+                    <span>📄</span>
+                    Download Full CV
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section id="about" class="about">
         <div class="about-content">
             <h2 class="section-title">About</h2>
@@ -553,7 +865,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.project-card').forEach(card => {
+        document.querySelectorAll('.project-card, .cv-card').forEach(card => {
             observer.observe(card);
         });
     </script>
