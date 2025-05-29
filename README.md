@@ -5,6 +5,15 @@ I will use this repository as a backup where I will save the latest and cleanest
 ## Version History
 
 ### Version 2 - CV Integration
+
+<div align="center">
+  <img src="images/V2" alt="CV Screenshot" width="600">
+</div>
+
+<br><br>
+
+The CV section includes:
+
 In version 2, I've added a complete CV section where I'll be showcasing my professional trajectory, education, languages, and technical skills. The CV section includes:
 
 - **Professional Experience**: Detailed work history and responsibilities
