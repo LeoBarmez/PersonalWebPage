@@ -7,7 +7,7 @@ I will use this repository as a backup where I will save the latest and cleanest
 ### Version 2 - CV Integration
 
 <div align="center">
-  <img src="images/V2" alt="CV Screenshot" width="600">
+  <img src="images/V2.png" alt="CV Screenshot" width="600">
 </div>
 
 <br><br>
