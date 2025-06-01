@@ -50,3 +50,13 @@ In version 2, I've added a complete CV section where I'll be showcasing my profe
 The CV section includes:
 
 In version 2, I've modificated all my studies and certifications. Also all my hard skill. 
+
+### Version 4 - Lenguages slot finished. 
+
+<div align="center">
+  <img src="images/V4.png" alt="CV Screenshot" width="600">
+</div>
+
+<br><br>
+
+Now the slot with the lenguages it's finished. I would like to put the flags of each lenguage but I couldn't do it. ;(
