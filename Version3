@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Portfolio - Altium Designer Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #00ff88;
+            --card-bg: #1a1a1a;
+            --border: #2a2a2a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-move 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(1.5rem, 5vw, 3em);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* CV Section */
+        .cv {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .cv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .cv-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cv-card:hover::before {
+            opacity: 1;
+        }
+
+        .cv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cv-icon {
+            font-size: 1.2rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cv-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .cv-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cv-item-company {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .cv-item-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        .languages-grid {
+          display: flex;
+          flex-wrap: nowrap; /* evita que se vayan a otra línea */
+          gap: 1rem; /* espacio entre elementos */
+          justify-content: space-between; /* o use start/center según prefieras */
+        }
+
+        .language-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .language-level {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .download-cv {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-download {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-image::before {
+            content: 'PCB Design';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--accent);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about .skill-item {
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .about .skill-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid, .cv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid, .languages-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Leo Barmez</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Electronics & Robotic Engineer</h1>
+            <p class="subtitle">Projects Portfolio </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/LeoBarmez" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Innovative PCB designs and electronic solutions</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- Add project image here -->
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">High-Speed Data Acquisition Board</h3>
+                    <p class="project-description">4-layer PCB design featuring high-speed ADCs and FPGA interface for real-time data processing.</p>
+                    <div class="project-tags">
+                        <span class="tag">4-Layer</span>
+                        <span class="tag">High-Speed</span>
+                        <span class="tag">FPGA</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Details →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- Add project image here -->
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">IoT Sensor Network Module</h3>
+                    <p class="project-description">Compact wireless sensor node with ultra-low power consumption and mesh networking capabilities.</p>
+                    <div class="project-tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">Low-Power</span>
+                        <span class="tag">RF Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Details →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- Add project image here -->
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Power Management System</h3>
+                    <p class="project-description">Multi-channel power supply with digital control, monitoring, and protection features.</p>
+                    <div class="project-tags">
+                        <span class="tag">Power</span>
+                        <span class="tag">SMPS</span>
+                        <span class="tag">Digital Control</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Details →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv" class="cv">
+        <div class="cv-container">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            <p class="section-subtitle">Professional experience and qualifications</p>
+            
+            <div class="cv-grid">
+                <!-- Experience Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">💼</span>
+                        Professional Experience
+                    </h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Junior PCB Designer</div>
+                        <div class="cv-item-company">Freelance Engineer</div>
+                        <div class="cv-item-date">January 2025 - Present</div>
+                        <div class="cv-item-description">
+                            Designed 2-4 layer PCBs for consumer electronics. Gained extensive experience with Altium Designer and PCB design best practices.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Junior RAMS Electronics Engineer</div>
+                        <div class="cv-item-company">GMV</div>
+                        <div class="cv-item-date">January 2024 - September 2024</div>
+                        <div class="cv-item-description">
+                            Supported critical components and systems for aerospace and defense projects. Responsibilities included performing:<br>
+                                <ul>
+                                  <li>Part Stress and Derating Analysis</li>
+                                  <li>FMECA (Failure Modes, Effects, and Criticality Analysis)</li>
+                                  <li>Fault Tree Analysis</li>
+                                  <li>Obsolescence Management</li>
+                                  <li>Reliability and Maintainability Analysis</li>
+                                  <li>Safety and Risk Assessments</li>
+                                </ul>
+                        </div>
+                    </div>                
+                 </div>                                       
+
+
+                <!-- Education Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">🎓</span>
+                        Education
+                    </h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">B.S. Industrial and Automation Electronics Engineer</div>
+                        <div class="cv-item-company">Universidad Rey Juan Carlos</div>
+                        <div class="cv-item-date">2019-2024</div>
+                        <div class="cv-item-description">
+                          Specialized in multiple areas of engineering, including high- and low-power electrical circuits and machinery.
+                          Skilled in the design and analysis of analog and digital circuits for both low- and high-signal applications.
+                          Experienced in industrial systems automation through PLC programming, embedded systems, and communication protocols.
+                          Knowledgeable in industrial production systems, process control, and system integration.
+                          Always focused on ensuring reliability, efficiency, and safety in automated production environments.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Altium Designer Certification</div>
+                        <div class="cv-item-company">Altium Academy</div>
+                        <div class="cv-item-date">2025</div>
+                        <div class="cv-item-description">
+                            Official certification in advanced PCB design and routing best practices using Altium Designer.
+                        </div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Python3 & C++ for Robotics Certification</div>
+                        <div class="cv-item-company">TheConstruct Academy</div>
+                        <div class="cv-item-date">2023</div>
+                        <div class="cv-item-description">
+                            Certified in Python and C++ programming for OpenSource Robotics.
+                        </div>
+                    </div>
+                    
+                     <div class="cv-item">
+                        <div class="cv-item-title">ROS2 Certification</div>
+                        <div class="cv-item-company">TheConstruct Academy</div>
+                        <div class="cv-item-date">2024</div>
+                        <div class="cv-item-description">
+                            Certified on the use of ROS2 for Robotics. 
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <!-- Technical Skills Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">⚡</span>
+                        Technical Skills
+                    </h3>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-item">Altium Designer</div>
+                        <div class="skill-item">KiCad</div>
+                        <div class="skill-item">PCB Layout</div>
+                        <div class="skill-item">Signal Integrity</div>
+                        <div class="skill-item">EMC/EMI Design</div>
+                        <div class="skill-item">FPGA Integration</div>
+                        <div class="skill-item">RF Circuit Design</div>
+                        <div class="skill-item">Power Electronics</div>
+                        <div class="skill-item">SPICE Simulation</div>
+                        <div class="skill-item">3D Modeling</div>
+                        <div class="skill-item">Git Version Control</div>
+                        <div class="skill-item">Python Scripting</div>
+                    </div>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="cv-card">
+                    <h3>
+                        <span class="cv-icon">🌐</span>
+                        Languages
+                    </h3>
+                    
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <div class="language-name">English</div>
+                            <div class="language-level">Native</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">Spanish</div>
+                            <div class="language-level">Advanced</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">French</div>
+                            <div class="language-level">Intermediate</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">German</div>
+                            <div class="language-level">Basic</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-cv">
+                <a href="#" class="btn-download">
+                    <span>📄</span>
+                    Download Full CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">
+                Passionate electronics engineer specializing in PCB design and embedded systems. 
+                With expertise in Altium Designer, I create innovative solutions that bridge 
+                the gap between concept and reality.
+            </p>
+            <div class="skills">
+                <div class="skill-item">Altium Designer</div>
+                <div class="skill-item">PCB Layout</div>
+                <div class="skill-item">Signal Integrity</div>
+                <div class="skill-item">EMC Design</div>
+                <div class="skill-item">Embedded Systems</div>
+                <div class="skill-item">RF Design</div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="social-links">
+            <a href="https://github.com/yourusername">📁</a>
+            <a href="https://linkedin.com/in/yourusername">💼</a>
+            <a href="mailto:your.email@example.com">✉️</a>
+        </div>
+        <p style="color: var(--text-secondary);">© 2024 Electronics Lab. Built with passion for PCB design.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .cv-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
