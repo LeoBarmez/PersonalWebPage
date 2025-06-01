@@ -38,3 +38,15 @@ In version 2, I've added a complete CV section where I'll be showcasing my profe
 - Version 3: Portfolio section with project showcases
 - Version 4: Contact form integration
 - Version 5: Interactive elements and animations
+
+### Version 3 - CV Modification
+
+<div align="center">
+  <img src="images/V3.png" alt="CV Screenshot" width="600">
+</div>
+
+<br><br>
+
+The CV section includes:
+
+In version 2, I've modificated all my studies and certifications. Also all my hard skill. 
